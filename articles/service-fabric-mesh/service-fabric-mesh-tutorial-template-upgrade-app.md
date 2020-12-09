@@ -1,20 +1,11 @@
 ---
-title: Tutorial- Upgrade an app running in Azure Service Fabric Mesh | Microsoft Docs
+title: Tutorial- Upgrade an app running in Azure Service Fabric Mesh 
 description: In this tutorial, you learn how to upgrade a Service Fabric application running in Service Fabric Mesh.
-services: service-fabric-mesh
-documentationcenter: .net
-author: dkkapur
-manager: jeconnoc
-editor: ''
-ms.assetid:  
-ms.service: service-fabric-mesh
-ms.devlang: dotNet
+author: georgewallace
 ms.topic: tutorial
-ms.tgt_pltfrm: NA
-ms.workload: NA
 ms.date: 01/11/2019
-ms.author: dekapur
-ms.custom: mvc, devcenter
+ms.author: gwallace
+ms.custom: mvc, devcenter, devx-track-azurecli
 #Customer intent: As a developer, I want learn how to create a Service Fabric Mesh app that communicates with another service, and then publish it to Azure.
 ---
 

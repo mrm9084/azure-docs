@@ -1,23 +1,20 @@
 ---
-title: Collect custom logs in Azure Monitor | Microsoft Docs
+title: Collect custom logs with Log Analytics agent in Azure Monitor
 description: Azure Monitor can collect events from text files on both Windows and Linux computers.  This article describes how to define a new custom log and details of the records they create in Azure Monitor.
-services: log-analytics
-documentationcenter: ''
-author: bwren
-manager: carmonm
-editor: tysonn
-ms.assetid: aca7f6bb-6f53-4fd4-a45c-93f12ead4ae1
-ms.service: log-analytics
+ms.subservice: logs
 ms.topic: conceptual
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 08/28/2019
+author: bwren
 ms.author: bwren
+ms.date: 10/21/2020
+
 ---
 
-# Custom logs in Azure Monitor
+# Collect custom logs with Log Analytics agent in Azure Monitor
 
-The Custom Logs data source in Azure Monitor allows you to collect events from text files on both Windows and Linux computers. Many applications log information to text files instead of standard logging services such as Windows Event log or Syslog. Once collected, you can either parse the data into individual fields in your queries or extract the data during collection to individual fields.
+The Custom Logs data source for the Log Analytics agent in Azure Monitor allows you to collect events from text files on both Windows and Linux computers. Many applications log information to text files instead of standard logging services such as Windows Event log or Syslog. Once collected, you can either parse the data into individual fields in your queries or extract the data during collection to individual fields.
+
+> [!IMPORTANT]
+> This article covers collecting custom logs with the [Log Analytics agent](log-analytics-agent.md) which is one of the agents used by Azure Monitor. Other agents collect different data and are configured differently. See [Overview of Azure Monitor agents](agents-overview.md) for a list of the available agents and the data they can collect.
 
 ![Custom log collection](media/data-sources-custom-logs/overview.png)
 
@@ -29,6 +26,7 @@ The log files to be collected must match the following criteria.
 
 - The log file must not allow circular logging or log rotation, where the file is overwritten with new entries.
 - The log file must use ASCII or UTF-8 encoding.  Other formats such as UTF-16 are not supported.
+- For Linux, time zone conversion is not supported for time stamps in the logs.
 
 >[!NOTE]
 > If there are duplicate entries in the log file, Azure Monitor will collect them. However, the query results will be inconsistent where the filter results show more events than the result count. It will be important that you validate the log to determine if the application that creates it is causing this behavior and address it if possible before creating the custom log collection definition.  
@@ -53,7 +51,7 @@ The Custom Log Wizard runs in the Azure portal and allows you to define a new cu
 
 1. In the Azure portal, select **Log Analytics workspaces** > your workspace > **Advanced Settings**.
 2. Click on **Data** > **Custom logs**.
-3. By default, all configuration changes are automatically pushed to all agents.  For Linux agents, a configuration file is sent to the Fluentd data collector.  If you wish to modify this file manually on each Linux agent, then uncheck the box *Apply below configuration to my Linux machines*.
+3. By default, all configuration changes are automatically pushed to all agents. For Linux agents, a configuration file is sent to the Fluentd data collector.
 4. Click **Add+** to open the Custom Log Wizard.
 
 ### Step 2. Upload and parse a sample log
@@ -130,11 +128,13 @@ Custom log records have a type with the log name that you provide and the proper
 ## Sample walkthrough of adding a custom log
 The following section walks through an example of creating a custom log.  The sample log being collected has a single entry on each line starting with a date and time and then comma-delimited fields for code, status, and message.  Several sample entries are shown below.
 
-    2019-08-27 01:34:36 207,Success,Client 05a26a97-272a-4bc9-8f64-269d154b0e39 connected
-    2019-08-27 01:33:33 208,Warning,Client ec53d95c-1c88-41ae-8174-92104212de5d disconnected
-    2019-08-27 01:35:44 209,Success,Transaction 10d65890-b003-48f8-9cfc-9c74b51189c8 succeeded
-    2019-08-27 01:38:22 302,Error,Application could not connect to database
-    2019-08-27 01:31:34 303,Error,Application lost connection to database
+```output
+2019-08-27 01:34:36 207,Success,Client 05a26a97-272a-4bc9-8f64-269d154b0e39 connected
+2019-08-27 01:33:33 208,Warning,Client ec53d95c-1c88-41ae-8174-92104212de5d disconnected
+2019-08-27 01:35:44 209,Success,Transaction 10d65890-b003-48f8-9cfc-9c74b51189c8 succeeded
+2019-08-27 01:38:22 302,Error,Application could not connect to database
+2019-08-27 01:31:34 303,Error,Application lost connection to database
+```
 
 ### Upload and parse a sample log
 We provide one of the log files and can see the events that it will be collecting.  In this case New Line is a sufficient delimiter.  If a single entry in the log could span multiple lines though, then a timestamp delimiter would need to be used.
@@ -158,7 +158,7 @@ We use a simple query of *MyApp_CL* to return all records from the collected log
 
 
 ## Alternatives to custom logs
-While custom logs are useful if your data fits the criteria listed about, but there are cases such as the following where you need another strategy:
+While custom logs are useful if your data fits the criteria listed above, there are cases such as the following where you need another strategy:
 
 - The data doesn't fit the required structure such as having the timestamp in a different format.
 - The log file doesn't adhere to requirements such as file encoding or an unsupported folder structure.
@@ -167,7 +167,7 @@ While custom logs are useful if your data fits the criteria listed about, but th
 In the cases where your data can't be collected with custom logs, consider the following alternate strategies:
 
 - Use a custom script or other method to write data to [Windows Events](data-sources-windows-events.md) or [Syslog](data-sources-syslog.md) which are collected by Azure Monitor. 
-- Send the data directly to Azure Monitor using [HTTP Data Collector API](data-collector-api.md). An example using runbooks in Azure Automation is provided in [Collect log data in Azure Monitor with an Azure Automation runbook](runbook-datacollect.md).
+- Send the data directly to Azure Monitor using [HTTP Data Collector API](data-collector-api.md). 
 
 ## Next steps
 * See [Parse text data in Azure Monitor](../log-query/parse-text.md) for methods to parse each imported log entry into multiple properties.

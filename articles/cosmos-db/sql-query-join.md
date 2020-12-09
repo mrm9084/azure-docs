@@ -1,14 +1,16 @@
 ---
 title: SQL JOIN queries for Azure Cosmos DB
-description: Learn about JOIN SQL syntax for Azure Cosmos DB.
+description: Learn how to JOIN multiple tables in Azure Cosmos DB to query the data
 author: markjbrown
 ms.service: cosmos-db
+ms.subservice: cosmosdb-sql
 ms.topic: conceptual
 ms.date: 05/17/2019
 ms.author: mjbrown
 
 ---
 # Joins in Azure Cosmos DB
+[!INCLUDE[appliesto-sql-api](includes/appliesto-sql-api.md)]
 
 In a relational database, joins across tables are the logical corollary to designing normalized schemas. In contrast, the SQL API uses the denormalized data model of schema-free items, which is the logical equivalent of a *self-join*.
 
@@ -98,7 +100,7 @@ Let's look at the following FROM clause: `<from_source1> JOIN <from_source2> JOI
   
 ## Examples
 
-The following examples show how the JOIN clause works. In the following example, the result is empty, since the cross product of each item from source and an empty set is empty:
+The following examples show how the JOIN clause works. Before you run these examples, upload the sample [family data](sql-query-getting-started.md#upload-sample-data). In the following example, the result is empty, since the cross product of each item from source and an empty set is empty:
 
 ```sql
     SELECT f.id

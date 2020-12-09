@@ -2,22 +2,15 @@
 title: 'Tutorial: Azure Active Directory single sign-on (SSO) integration with SurveyMonkey Enterprise | Microsoft Docs'
 description: Learn how to configure single sign-on between Azure Active Directory and SurveyMonkey Enterprise.
 services: active-directory
-documentationCenter: na
 author: jeevansd
-manager: mtillman
-ms.reviewer: barbkess
-
-ms.assetid: 1a2d9b57-27b5-4d9f-b52c-09b692872cf7
+manager: CelesteDG
+ms.reviewer: celested
 ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: tutorial
-ms.date: 09/05/2019
+ms.date: 10/17/2019
 ms.author: jeedes
-
-ms.collection: M365-identity-device-management
 ---
 
 # Tutorial: Azure Active Directory single sign-on (SSO) integration with SurveyMonkey Enterprise
@@ -28,7 +21,7 @@ In this tutorial, you'll learn how to integrate SurveyMonkey Enterprise with Azu
 * Enable your users to be automatically signed-in to SurveyMonkey Enterprise with their Azure AD accounts.
 * Manage your accounts in one central location - the Azure portal.
 
-To learn more about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis).
+To learn more about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](../manage-apps/what-is-single-sign-on.md).
 
 ## Prerequisites
 
@@ -42,6 +35,9 @@ To get started, you need the following items:
 In this tutorial, you configure and test Azure AD SSO in a test environment.
 
 * SurveyMonkey Enterprise supports **IDP** initiated SSO
+
+> [!NOTE]
+> Identifier of this application is a fixed string value so only one instance can be configured in one tenant.
 
 ## Adding SurveyMonkey Enterprise from the gallery
 
@@ -78,6 +74,18 @@ Follow these steps to enable Azure AD SSO in the Azure portal.
    ![Edit Basic SAML Configuration](common/edit-urls.png)
 
 1. On the **Basic SAML Configuration** section, the application is pre-configured and the necessary URLs are already pre-populated with Azure. The user needs to save the configuration by clicking the **Save** button.
+
+1. SurveyMonkey Enterprise application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your SAML token attributes configuration. The following screenshot shows the list of default attributes.
+
+    ![image](common/edit-attribute.png)
+
+6. In addition to above, SurveyMonkey Enterprise application expects few more attributes to be passed back in SAML response which are shown below. These attributes are also pre populated but you can review them as per your requirement.
+
+    | Name | Source Attribute|
+	| ---------------| --------------- |
+	| Email | user.mail |
+    | FirstName | user.givenname |
+    | LastName | user.surname |
 
 1. On the **Set up single sign-on with SAML** page, in the **SAML Signing Certificate** section,  find **Federation Metadata XML** and select **Download** to download the certificate and save it on your computer.
 
@@ -123,20 +131,20 @@ To configure single sign-on on **SurveyMonkey Enterprise** side, you need to sen
 
 ### Create SurveyMonkey Enterprise test user
 
-In this section, you create a user called B.Simon in SurveyMonkey Enterprise. Work with [SurveyMonkey Enterprise support team](mailto:support@selerix.com) to add the users in the SurveyMonkey Enterprise platform. Users must be created and activated before you use single sign-on.
+It is not necessary to create a test user in SurveyMonkey Enterprise. User accounts will be provisioned, if the user chooses to create a new account, based on the SAML assertion. Your SurveyMonkey Enterprise Customer Success Manager will provide steps to complete this process after your Azure metadata has been added to the SurveyMonkey Enterprise configuration and it's ready to be validated.
 
 ## Test SSO 
 
 In this section, you test your Azure AD single sign-on configuration using the Access Panel.
 
-When you click the SurveyMonkey Enterprise tile in the Access Panel, you should be automatically signed in to the SurveyMonkey Enterprise for which you set up SSO. For more information about the Access Panel, see [Introduction to the Access Panel](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction).
+When you click the SurveyMonkey Enterprise tile in the Access Panel, you should be automatically signed in to the SurveyMonkey Enterprise for which you set up SSO. For more information about the Access Panel, see [Introduction to the Access Panel](../user-help/my-apps-portal-end-user-access.md).
 
 ## Additional resources
 
-- [ List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory ](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list)
+- [ List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory ](./tutorial-list.md)
 
-- [What is application access and single sign-on with Azure Active Directory? ](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis)
+- [What is application access and single sign-on with Azure Active Directory? ](../manage-apps/what-is-single-sign-on.md)
 
-- [What is conditional access in Azure Active Directory?](https://docs.microsoft.com/azure/active-directory/conditional-access/overview)
+- [What is conditional access in Azure Active Directory?](../conditional-access/overview.md)
 
 - [Try SurveyMonkey Enterprise with Azure AD](https://aad.portal.azure.com/)

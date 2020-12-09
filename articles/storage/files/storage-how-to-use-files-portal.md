@@ -1,6 +1,6 @@
 ---
 title: Quickstart for managing Azure file shares with Azure portal
-description: Use this quickstart to learn to use the Azure portal to manage Azure Files.
+description: See how to create and manage Azure file shares in the Azure portal. Create a storage account, create an Azure file share, and use your Azure file share.
 author: roygara
 ms.service: storage
 ms.topic: quickstart
@@ -25,14 +25,14 @@ To create an Azure file share:
 2. On the storage account page, in the **Services** section, select **Files**.
 	![A screenshot of the services section of the storage account; select the Files service](media/storage-how-to-use-files-portal/create-file-share-1.png)
 
-3. On the menu at the top of the **File service** page, click **+ File share**. The **New file share** page drops down.
+3. On the menu at the top of the **File service** page, click **File share**. The **New file share** page drops down.
 4. In **Name** type *myshare*.
 5. Click **OK** to create the Azure file share.
 
-Share names need to be all lower case letters, numbers, and single hyphens but cannot start with a hyphen. For complete details about naming file shares and files, see [Naming and Referencing Shares, Directories, Files, and Metadata](https://docs.microsoft.com/rest/api/storageservices/Naming-and-Referencing-Shares--Directories--Files--and-Metadata).
+Share names need to be all lower case letters, numbers, and single hyphens but cannot start with a hyphen. For complete details about naming file shares and files, see [Naming and Referencing Shares, Directories, Files, and Metadata](/rest/api/storageservices/Naming-and-Referencing-Shares--Directories--Files--and-Metadata).
 
 ## Use your Azure file share
-Azure Files provides two methods of working with files and folders within your Azure file share: the industry standard [Server Message Block (SMB) protocol](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx) and the [File REST protocol](https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api). 
+Azure Files provides three methods of working with files and folders within your Azure file share: the industry standard [Server Message Block (SMB) protocol](/windows/win32/fileio/microsoft-smb-protocol-and-cifs-protocol-overview), the Network File System (NFS) protocol (preview), and the [File REST protocol](/rest/api/storageservices/file-service-rest-api). 
 
 To mount a file share with SMB, see the following document based on your OS:
 - [Windows](storage-how-to-use-files-windows.md)

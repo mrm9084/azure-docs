@@ -2,22 +2,15 @@
 title: 'Tutorial: Azure Active Directory single sign-on (SSO) integration with CakeHR | Microsoft Docs'
 description: Learn how to configure single sign-on between Azure Active Directory and CakeHR.
 services: active-directory
-documentationCenter: na
 author: jeevansd
-manager: mtillman
-ms.reviewer: barbkess
-
-ms.assetid: 1c9bbdb1-ac47-4fb8-a1cc-1e647b0323a7
+manager: CelesteDG
+ms.reviewer: celested
 ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: tutorial
-ms.date: 09/19/2019
+ms.date: 10/16/2019
 ms.author: jeedes
-
-ms.collection: M365-identity-device-management
 ---
 
 # Tutorial: Azure Active Directory single sign-on (SSO) integration with CakeHR
@@ -28,7 +21,7 @@ In this tutorial, you'll learn how to integrate CakeHR with Azure Active Directo
 * Enable your users to be automatically signed-in to CakeHR with their Azure AD accounts.
 * Manage your accounts in one central location - the Azure portal.
 
-To learn more about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis).
+To learn more about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](../manage-apps/what-is-single-sign-on.md).
 
 ## Prerequisites
 
@@ -64,10 +57,10 @@ Configure and test Azure AD SSO with CakeHR using a test user called **B.Simon**
 To configure and test Azure AD SSO with CakeHR, complete the following building blocks:
 
 1. **[Configure Azure AD SSO](#configure-azure-ad-sso)** - to enable your users to use this feature.
-    1. **[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with B.Simon.
-    1. **[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable B.Simon to use Azure AD single sign-on.
+    * **[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with B.Simon.
+    * **[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable B.Simon to use Azure AD single sign-on.
 1. **[Configure CakeHR SSO](#configure-cakehr-sso)** - to configure the single sign-on settings on application side.
-    1. **[Create CakeHR test user](#create-cakehr-test-user)** - to have a counterpart of B.Simon in CakeHR that is linked to the Azure AD representation of user.
+    * **[Create CakeHR test user](#create-cakehr-test-user)** - to have a counterpart of B.Simon in CakeHR that is linked to the Azure AD representation of user.
 1. **[Test SSO](#test-sso)** - to verify whether the configuration works.
 
 ## Configure Azure AD SSO
@@ -134,25 +127,33 @@ In this section, you'll enable B.Simon to use Azure single sign-on by granting a
 
 ## Configure CakeHR SSO
 
-1. Open a new web browser window and sign into your CakeHR company site as an administrator.
+1. To automate the configuration within CakeHR, you need to install **My Apps Secure Sign-in browser extension** by clicking **Install the extension**.
 
-2. On the top-right corner of the page, click on **Profile** and then navigate to **Settings**.
+	![My apps extension](common/install-myappssecure-extension.png)
 
-    ![CakeHR configuration](./media/cakehr-tutorial/config01.png)
+1. After adding extension to the browser, click on **Set up CakeHR** will direct you to the CakeHR application. From there, provide the admin credentials to sign into CakeHR. The browser extension will automatically configure the application for you and automate steps 3-5.
 
-3. From the left side of the menu bar, click on **INTEGRATIONS** > **SAML SSO** and perform the following steps:
+	![Setup configuration](common/setup-sso.png)
 
-     ![CakeHR configuration](./media/cakehr-tutorial/config02.png)
+1. If you want to setup CakeHR manually, open a new web browser window and sign into your CakeHR company site as an administrator and perform the following steps:
 
-     a. In the **Entity ID** text box, type `cake.hr`.
+1. On the top-right corner of the page, click on **Profile** and then navigate to **Settings**.
 
-     b. In the **Authentication URL** text box, paste the value of **Login URL**, which you have copied from Azure portal.
+    ![Screenshot shows Profile with Settings selected.](./media/cakehr-tutorial/config01.png)
 
-     c. In the **Key fingerprint (SHA1 format)** text box, paste the **THUMBPRINT** value, which you have copied from Azure portal.
+1. From the left side of the menu bar, click on **INTEGRATIONS** > **SAML SSO** and perform the following steps:
 
-     d. Check the **Enable Single Sign on** box.
+    ![Screenshot shows the Setting pane where you perform these steps.](./media/cakehr-tutorial/config02.png)
 
-     e. Click **Save**.
+    a. In the **Entity ID** text box, type `cake.hr`.
+
+    b. In the **Authentication URL** text box, paste the value of **Login URL**, which you have copied from Azure portal.
+
+    c. In the **Key fingerprint (SHA1 format)** text box, paste the **THUMBPRINT** value, which you have copied from Azure portal.
+
+    d. Check the **Enable Single Sign on** box.
+
+    e. Click **Save**.
 
 ### Create CakeHR test user
 
@@ -162,13 +163,13 @@ To enable Azure AD users to sign in to CakeHR, they must be provisioned into Cak
 
 1. Sign in to CakeHR as a Security Administrator.
 
-2. From the left side of the menu bar, click on **COMPANY** > **ADD**.
+2. From the left side of the menu bar, click on **COMPANY** > **ADD**.
 
-    ![CakeHR configuration](./media/cakehr-tutorial/config03.png)
+    ![Screenshot shows CakeHR with COMPANY and ADD selected.](./media/cakehr-tutorial/config03.png)
 
 3. On the **Add new employee** pop-up, perform the following steps:
 
-     ![CakeHR configuration](./media/cakehr-tutorial/config04.png)
+     ![Screenshot shows Add new employee where you perform these steps.](./media/cakehr-tutorial/config04.png)
 
     a. In **Full name** text box, enter the name of user like B.Simon.
 
@@ -180,15 +181,14 @@ To enable Azure AD users to sign in to CakeHR, they must be provisioned into Cak
 
 In this section, you test your Azure AD single sign-on configuration using the Access Panel.
 
-When you click the CakeHR tile in the Access Panel, you should be automatically signed in to the CakeHR for which you set up SSO. For more information about the Access Panel, see [Introduction to the Access Panel](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction).
+When you click the CakeHR tile in the Access Panel, you should be automatically signed in to the CakeHR for which you set up SSO. For more information about the Access Panel, see [Introduction to the Access Panel](../user-help/my-apps-portal-end-user-access.md).
 
 ## Additional resources
 
-- [ List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory ](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list)
+- [ List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory ](./tutorial-list.md)
 
-- [What is application access and single sign-on with Azure Active Directory? ](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis)
+- [What is application access and single sign-on with Azure Active Directory? ](../manage-apps/what-is-single-sign-on.md)
 
-- [What is conditional access in Azure Active Directory?](https://docs.microsoft.com/azure/active-directory/conditional-access/overview)
+- [What is conditional access in Azure Active Directory?](../conditional-access/overview.md)
 
 - [Try CakeHR with Azure AD](https://aad.portal.azure.com/)
-
